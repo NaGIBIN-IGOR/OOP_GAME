@@ -1,8 +1,9 @@
 //
 // Created by igor on 20.10.2021.
 //
-#ifndef OOPGAME_ITEM_H
-#define OOPGAME_ITEM_H
+
+#pragma once
+
 
 #include "../../Type_item.h"
 
@@ -17,4 +18,4 @@ public:
 
 };
 
-#endif //OOPGAME_ITEM_H
+//OOPGAME_ITEM_H

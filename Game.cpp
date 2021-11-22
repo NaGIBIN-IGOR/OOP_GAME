@@ -41,7 +41,6 @@ void Game::start() {
     if(Logger::is_outf())
     Logger::message("Игра началась\n");
 
-
     if(!field->is_environment_exist()) exit(1);
     player->set_x_coordinate(1);
     player->set_y_coordinate(field->get_entrance_coordinate());
@@ -52,6 +51,7 @@ void Game::start() {
     view_field->display(*field);
     print_player_stats();
 
+    Observer obs;
     char move_direction;
     unsigned move_number = 1;
     unsigned item_number = 0;

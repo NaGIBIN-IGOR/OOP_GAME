@@ -2,8 +2,9 @@
 // Created by igor on 18.10.2021.
 //
 
-#ifndef OOPGAME_FIELD_GENERATE_H
-#define OOPGAME_FIELD_GENERATE_H
+
+#pragma once
+
 
 #include "Field.h"
 
@@ -32,4 +33,4 @@ private:
 
 };
 
-#endif //OOPGAME_FIELD_GENERATE_H
+ //OOPGAME_FIELD_GENERATE_H

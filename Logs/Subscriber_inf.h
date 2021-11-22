@@ -2,8 +2,9 @@
 // Created by igor on 17.11.2021.
 //
 
-#ifndef OOP_GAME_SUBSCRIBER_INF_H
-#define OOP_GAME_SUBSCRIBER_INF_H
+
+
+#pragma once
 
 struct Subscriber_inf{
     int health = -1;
@@ -12,4 +13,4 @@ struct Subscriber_inf{
     int y_coordinate = -1;
 };
 
-#endif //OOP_GAME_SUBSCRIBER_INF_H
+ //OOP_GAME_SUBSCRIBER_INF_H

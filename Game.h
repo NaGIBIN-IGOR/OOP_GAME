@@ -2,8 +2,9 @@
 // Created by igor on 20.10.2021.
 //
 
-#ifndef OOPGAME_GAME_H
-#define OOPGAME_GAME_H
+#pragma once
+
+
 
 #include "vector"
 
@@ -27,4 +28,4 @@ private:
     bool player_on_exit();
     void print_player_stats();
 };
-#endif //OOPGAME_GAME_H
+ //OOPGAME_GAME_H

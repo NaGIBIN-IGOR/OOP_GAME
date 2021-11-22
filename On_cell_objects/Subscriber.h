@@ -2,8 +2,9 @@
 // Created by igor on 16.11.2021.
 //
 
-#ifndef OOP_GAME_SUBSCRIBER_H
-#define OOP_GAME_SUBSCRIBER_H
+
+#pragma once
+
 #include "iostream"
 
 class Subscriber{
@@ -19,4 +20,4 @@ protected:
 };
 
 
-#endif //OOP_GAME_SUBSCRIBER_H
+ //OOP_GAME_SUBSCRIBER_H

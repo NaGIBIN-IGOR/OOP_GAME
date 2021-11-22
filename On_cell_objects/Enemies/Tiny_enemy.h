@@ -2,8 +2,9 @@
 // Created by igor on 25.10.2021.
 //
 
-#ifndef OOP_GAME_TINY_ENEMY_H
-#define OOP_GAME_TINY_ENEMY_H
+#pragma once
+
+
 
 #include "Enemy.h"
 
@@ -25,4 +26,4 @@ private:
     unsigned damage = 35;
 
 };
-#endif //OOP_GAME_TINY_ENEMY_H
+ //OOP_GAME_TINY_ENEMY_H

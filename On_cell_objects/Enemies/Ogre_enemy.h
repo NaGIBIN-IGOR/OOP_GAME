@@ -2,8 +2,9 @@
 // Created by igor on 25.10.2021.
 //
 
-#ifndef OOP_GAME_OGRE_ENEMY_H
-#define OOP_GAME_OGRE_ENEMY_H
+
+#pragma once
+
 
 #include "Enemy.h"
 
@@ -27,4 +28,4 @@ private:
 
 };
 
-#endif //OOP_GAME_OGRE_ENEMY_H
+ //OOP_GAME_OGRE_ENEMY_H

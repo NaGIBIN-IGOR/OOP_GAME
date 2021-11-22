@@ -1,17 +1,18 @@
 //
 // Created by igor on 11.11.2021.
 //
-#ifndef OOP_GAME_OBSERVER_H
-#define OOP_GAME_OBSERVER_H
+#pragma once
 
 #include <string>
 #include <fstream>
 #include <vector>
 
-class Player;
-class Enemy;
-class Subscriber;
-class Observe_inf;
+#include "Observer.h"
+#include "Observe_inf.h"
+#include "../On_cell_objects/Player.h"
+#include "../On_cell_objects/Enemies/Enemy.h"
+#include "../On_cell_objects/Subscriber.h"
+
 
 class Logger {
 public:
@@ -34,4 +35,3 @@ private:
 };
 
 
-#endif

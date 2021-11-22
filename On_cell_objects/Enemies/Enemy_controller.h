@@ -2,8 +2,9 @@
 // Created by igor on 24.10.2021.
 //
 
-#ifndef OOP_GAME_ENEMY_CONTROLLER_H
-#define OOP_GAME_ENEMY_CONTROLLER_H
+
+#pragma once
+
 
 #include <vector>
 #include "Enemy.h"
@@ -18,4 +19,4 @@ public:
 private:
     Diraction player_check(Field &field, unsigned x, unsigned y);
 };
-#endif //OOP_GAME_ENEMY_CONTROLLER_H
+ //OOP_GAME_ENEMY_CONTROLLER_H

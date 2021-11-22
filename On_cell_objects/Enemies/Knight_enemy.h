@@ -2,8 +2,8 @@
 // Created by igor on 24.10.2021.
 //
 
-#ifndef OOP_GAME_KNIGHT_ENEMY_H
-#define OOP_GAME_KNIGHT_ENEMY_H
+#pragma once
+
 
 #include "Enemy.h"
 class Field;
@@ -28,4 +28,4 @@ private:
 
 };
 
-#endif //OOP_GAME_KNIGHT_ENEMY_H
+//OOP_GAME_KNIGHT_ENEMY_H

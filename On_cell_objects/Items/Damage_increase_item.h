@@ -2,8 +2,9 @@
 // Created by igor on 20.10.2021.
 //
 
-#ifndef OOPGAME_DAMAGE_ITEM_H
-#define OOPGAME_DAMAGE_ITEM_H
+#pragma once
+
+
 
 #include "Item.h"
 
@@ -18,4 +19,4 @@ private:
     unsigned damage_increase = 4;
 };
 
-#endif //OOPGAME_DAMAGE_ITEM_H
+ //OOPGAME_DAMAGE_ITEM_H

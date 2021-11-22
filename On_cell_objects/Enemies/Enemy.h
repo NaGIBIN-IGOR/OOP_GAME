@@ -2,8 +2,9 @@
 // Created by igor on 24.10.2021.
 //
 
-#ifndef OOP_GAME_ENEMY_H
-#define OOP_GAME_ENEMY_H
+#pragma once
+
+
 
 #include <string>
 #include "./../../Type_enemy.h"
@@ -46,4 +47,4 @@ protected:
     unsigned x, y;
 };
 
-#endif //OOP_GAME_ENEMY_H
+ //OOP_GAME_ENEMY_H

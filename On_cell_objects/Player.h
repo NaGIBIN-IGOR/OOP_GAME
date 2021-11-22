@@ -1,8 +1,9 @@
 //
 // Created by igor on 19.10.2021.
 //
-#ifndef OOPGAME_PLAYER_H
-#define OOPGAME_PLAYER_H
+#pragma once
+
+
 
 #include "fstream"
 #include "./../Diraction.h"
@@ -74,4 +75,4 @@ private:
 
 };
 
-#endif //OOPGAME_PLAYER_H
+//OOPGAME_PLAYER_H

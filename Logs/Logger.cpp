@@ -25,6 +25,7 @@ Logger::~Logger() {
 }
 
 Logger::Logger(const std::string& filename){
+    remove(filename.c_str());
     outf.open(filename, std::ios::app);
     if(outf.is_open())file_out = true;
 }

@@ -2,8 +2,9 @@
 // Created by igor on 20.10.2021.
 //
 
-#ifndef OOPGAME_HEAL_DAMAGE_ITEM_H
-#define OOPGAME_HEAL_DAMAGE_ITEM_H
+
+#pragma once
+
 #include "Item.h"
 
 class Max_health_damage_increase : public Item{
@@ -18,4 +19,4 @@ private:
 };
 
 
-#endif //OOPGAME_HEAL_DAMAGE_ITEM_H
+ //OOPGAME_HEAL_DAMAGE_ITEM_H

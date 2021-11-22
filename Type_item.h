@@ -2,8 +2,8 @@
 // Created by igor on 20.10.2021.
 //
 
-#ifndef OOPGAME_TYPE_ITEM_H
-#define OOPGAME_TYPE_ITEM_H
+#pragma once
+
 
 enum Type_item{
     HEAL,
@@ -12,4 +12,4 @@ enum Type_item{
     NO_ITEM
 };
 
-#endif //OOPGAME_TYPE_ITEM_H
+ //OOPGAME_TYPE_ITEM_H

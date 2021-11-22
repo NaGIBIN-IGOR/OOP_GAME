@@ -2,12 +2,14 @@
 // Created by igor on 16.11.2021.
 //
 
-#ifndef OOP_GAME_OBSERVER_H
-#define OOP_GAME_OBSERVER_H
+#pragma once
 
 #include <vector>
+#include "Observe_inf.h"
+#include "Subscriber_inf.h"
+#include "../On_cell_objects/Subscriber.h"
 
-struct Observe_inf;class Subscriber; class Subscriber_inf;
+//struct Observe_inf;class Subscriber; class Subscriber_inf;
 
 class Observer {
 public:
@@ -19,4 +21,3 @@ private:
 
 
 
-#endif //OOP_GAME_OBSERVER_H

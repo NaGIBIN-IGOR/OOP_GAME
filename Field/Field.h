@@ -2,8 +2,10 @@
 // Created by igor on 18.10.2021.
 //
 
-#ifndef OOPGAME_FIELD_H
-#define OOPGAME_FIELD_H
+
+#pragma once
+
+
 
 
 class Cell;
@@ -52,4 +54,4 @@ private:
     unsigned exit_coord = -1;
 };
 
-#endif //OOPGAME_FIELD_H
+//OOPGAME_FIELD_H

@@ -2,8 +2,7 @@
 // Created by igor on 18.10.2021.
 //
 
-#ifndef OOPGAME_CELL_H
-#define OOPGAME_CELL_H
+#pragma once
 
 #include "../View/Cell_view.h"
 #include "../Type_cell.h"
@@ -71,4 +70,4 @@ private:
     Enemy *enemy = nullptr;
 };
 
-#endif //OOPGAME_CELL_H
+ //OOPGAME_CELL_H

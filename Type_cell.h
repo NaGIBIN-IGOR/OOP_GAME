@@ -2,8 +2,8 @@
 // Created by igor on 18.10.2021.
 //
 
-#ifndef OOPGAME_TYPE_CELL_H
-#define OOPGAME_TYPE_CELL_H
+#pragma once
+
 enum Type_cell {
     PASSABLE_CELL,
     WALL,
@@ -11,4 +11,4 @@ enum Type_cell {
     EXIT,
     UNDEFINED_CELL
 };
-#endif //OOPGAME_TYPE_CELL_H
+ //OOPGAME_TYPE_CELL_H

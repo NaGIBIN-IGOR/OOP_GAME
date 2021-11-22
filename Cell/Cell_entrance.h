@@ -2,9 +2,7 @@
 // Created by igor on 18.10.2021.
 //
 
-#ifndef OOPGAME_CELL_ENTRANCE_H
-#define OOPGAME_CELL_ENTRANCE_H
-
+#pragma once
 
 #include "Cell.h"
 
@@ -16,4 +14,4 @@ private:
 
 };
 
-#endif //OOPGAME_CELL_ENTRANCE_H
+ //OOPGAME_CELL_ENTRANCE_H
