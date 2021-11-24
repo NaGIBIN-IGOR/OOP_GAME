@@ -23,7 +23,7 @@ public:
     virtual unsigned get_x_coordinate() = 0;
     virtual unsigned get_y_coordinate() = 0;
     virtual Type_enemy get_enemy_type() = 0;
-    virtual void print_enemy_inf(std::ostream& out) = 0;
+    virtual void print(std::ostream& out) = 0;
 
     void make_move(Field& field, Diraction);
 
@@ -40,8 +40,8 @@ private:
 
     void move_down(Field &field);
 
-    void print(std::ostream &out) override;
 protected:
+//    void print(std::ostream &out) override;
     virtual void set_health(unsigned ) = 0;
 
     unsigned x, y;

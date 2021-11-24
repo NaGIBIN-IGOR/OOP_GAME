@@ -37,13 +37,13 @@ Knight_enemy::Knight_enemy(unsigned x_coord, unsigned y_coord){
     y = y_coord;
 }
 
-void Knight_enemy::print_enemy_inf(std::ostream &out) {
+void Knight_enemy::print(std::ostream &out) {
 //    out << "Рыцарь имеет: " << this->get_health() << " здоровья  и " << this->get_damage() << " урона";
     out << *this;
 }
 
 std::ostream &operator<<(std::ostream &out,  Knight_enemy &enemy) {
 //    out << "Рыцарь имеет: " << enemy.get_health() << " здоровья  и " << enemy.get_damage() << " урона";
-    out << "Рыцарь:";
+    out << "Рыцарь";
     return out;
 }

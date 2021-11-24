@@ -6,6 +6,10 @@
 #include "Enemies/Enemy.h"
 #include "Items/Item.h"
 #include "../Cell/Cell.h"
+#include "../Logs/Logger.h"
+
+#include <sstream>
+
 unsigned Player::get_max_damage() const {
     return max_damage;
 }
@@ -121,7 +125,9 @@ void Player::move_right(Field &field) {
 
 void Player::make_hit(Enemy &enemy) {
 
-//    Logger().message("Игрок наносит урон: " + std::to_string(damage) + " ед.урона", "../Logs/Logs.txt");
+    std::stringstream ss;
+    ss << "\t" << "Игрок наносит " << this->damage << "ед.урона: " << enemy << std::endl;
+    Logger::message(ss.str());
     enemy.take_hit(get_damage());
 }
 
@@ -150,8 +156,7 @@ void Player::make_move(Field& field, char wasdg) {
 }
 
 std::ostream &operator<<(std::ostream &out,  const Player &player) {
-//    out << "Игрок имеет: " << player.get_health() << " здоровья  и " << player.get_damage() << " урона";
-    out << "Игрок:";
+    out << "Игрок";
     return out;
 }
 

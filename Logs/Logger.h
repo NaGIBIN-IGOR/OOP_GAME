@@ -20,17 +20,17 @@ public:
     explicit Logger(const std::string& filename);
     ~Logger();
 
-    static void sub_changes_to_out(std::vector<std::pair<Subscriber*, Observe_inf>>& information);
     static bool is_outf();
     static void message(const std::string& string);
     static void add_console_out();
+    static void sub_changes_to_out(std::vector<std::pair<Subscriber*, Observe_inf>>& information);
 
 
 private:
+    Observer obs;
     static std::ofstream outf;
     static bool console_out;
     static bool file_out;
-
 
 };
 

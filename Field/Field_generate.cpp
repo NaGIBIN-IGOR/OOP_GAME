@@ -149,7 +149,7 @@ Enemy* Field_generate::add_rand_enemy(Field& field) {
        && !field.get_cell(rand_x_coord, rand_y_coord).enemy_on_cell()) {
         switch (choice) {
             case 0:
-                enemy = new Knight_enemy(rand_x_coord, rand_y_coord);
+                enemy = new Ogre_enemy(rand_x_coord, rand_y_coord);
                 field.get_cell(rand_x_coord, rand_y_coord).set_enemy(enemy);
                 break;
             case 1:
@@ -157,7 +157,7 @@ Enemy* Field_generate::add_rand_enemy(Field& field) {
                 field.get_cell(rand_x_coord, rand_y_coord).set_enemy(enemy);
                 break;
             case 2:
-                enemy = new Ogre_enemy(rand_x_coord, rand_y_coord);
+                enemy = new Knight_enemy(rand_x_coord, rand_y_coord);
                 field.get_cell(rand_x_coord, rand_y_coord).set_enemy(enemy);
                 break;
         }

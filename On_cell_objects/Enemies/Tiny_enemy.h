@@ -19,7 +19,7 @@ public:
     unsigned get_x_coordinate() override;
     unsigned get_y_coordinate() override;
     void set_health(unsigned int) override;
-    void print_enemy_inf(std::ostream& out) override;
+    void print(std::ostream& out) override;
 
 private:
     unsigned health = 15;

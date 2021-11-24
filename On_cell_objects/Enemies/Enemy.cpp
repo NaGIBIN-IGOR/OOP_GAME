@@ -7,7 +7,7 @@
 #include "../../Field/Field.h"
 #include "../Player.h"
 #include "../../Logs/Logger.h"
-#include <iostream>
+#include <sstream>
 
 void Enemy::move_left(Field &field) {
 
@@ -89,24 +89,21 @@ void Enemy::make_move(Field &field, Diraction dir) {
 }
 
 void Enemy::make_hit(Player& player) {
-//    Logger().message("Враг наносит урон" + std::to_string(get_damage()) + "ед.урона", "../../Logs/Logs.txt");
+    std::stringstream ss;
+    ss << "\t" <<*this << " наносит " << get_damage() << " ед.урона Игроку" << std::endl;
+    Logger::message(ss.str());
     if((int)player.get_health() - (int)get_damage() < 0) player.set_health(0);
     else player.set_health(player.get_health() - get_damage());
 }
 
 void Enemy::take_hit(unsigned int dmg) {
-//    Logger().message("Враг получает урон" + std::to_string(dmg) + "ед.урона", "../../Logs/Logs.txt");
     if((int) get_health() - (int)dmg < 0) set_health(0);
     else set_health(get_health() - dmg);
 
 }
 
-void Enemy::print(std::ostream &out) {
-    out<<*this;
-}
-
 std::ostream &operator<<(std::ostream &out,  Enemy &enemy) {
-    enemy.print_enemy_inf(out);
+    enemy.print(out);
     return out;
 }
 

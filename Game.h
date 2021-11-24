@@ -7,6 +7,7 @@
 
 
 #include "vector"
+#include "Logs/Observer.h"
 
 class Field; class Field_view; class Field_generate; class Enemy_controller; class Player; class Enemy;
 
@@ -22,10 +23,12 @@ private:
     Enemy_controller* enemy_controller ;
     Player* player;
     std::vector<Enemy*> enemies;
+    Observer* observer;
 
     void end();
     bool check_player_death();
     bool player_on_exit();
     void print_player_stats();
+    void delete_dead_enemies();
 };
  //OOPGAME_GAME_H

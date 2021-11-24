@@ -36,13 +36,13 @@ void Ogre_enemy::set_health(unsigned int new_helth) {
     else health = new_helth;
 }
 
-void Ogre_enemy::print_enemy_inf(std::ostream &out) {
+void Ogre_enemy::print(std::ostream &out) {
 //    out << "Огр имеет: " << this->get_health() << " здоровья  и " << this->get_damage() << " урона";
     out << *this;
 }
 
 std::ostream &operator<<(std::ostream &out,  Ogre_enemy &enemy) {
 //    out << "Огр имеет: " << enemy.get_health() << " здоровья  и " << enemy.get_damage() << " урона";
-    out << "Огр:";
+    out << "Огр";
     return out;
 }

@@ -14,8 +14,10 @@
 class Observer {
 public:
     void add_observer(Subscriber* new_sub);
-    std::vector<std::pair<Subscriber*, Observe_inf>>& check_subscribers();
+    void remove_dead_subs();
+    void check_subscribers();
 private:
+    void set_actual_inf();
     std::vector<std::pair<Subscriber*, Subscriber_inf>> observed_subs;
 };
 

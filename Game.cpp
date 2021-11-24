@@ -12,15 +12,14 @@
 #include "Cell/Cell.h"
 #include "Clear_terminal.h"
 #include "Logs/Logger.h"
-#include "Logs/Observer.h"
 
 
-#define ITEM_FREQ_GENERATE 4
-#define ENEMY_FREQ_GENERATE 6
+#define ITEM_FREQ_GENERATE 2
+#define ENEMY_FREQ_GENERATE 3
 #define MAX_ITEM_NUMBER 10
 #define MAX_ENEMY_NUMBER 6
 
-Game::Game():field(new Field(20, 7)), enemy_controller(new Enemy_controller()), view_field(new Field_view()), gen_field(new Field_generate()), player(new Player()){
+Game::Game():field(new Field(20, 7)), enemy_controller(new Enemy_controller()), view_field(new Field_view()), gen_field(new Field_generate()), player(new Player()), observer(new Observer()){
     std::srand(time(nullptr));
     gen_field->environment_generate(*field);
 }
@@ -31,15 +30,13 @@ Game::~Game() {
     delete view_field;
     delete gen_field;
     delete player;
+    delete observer;
     for (Enemy* enemy: enemies) {
         delete enemy;
     }
 }
 
 void Game::start() {
-    Logger logger("../Logs/Logs.txt");
-    if(Logger::is_outf())
-    Logger::message("Игра началась\n");
 
     if(!field->is_environment_exist()) exit(1);
     player->set_x_coordinate(1);
@@ -51,14 +48,18 @@ void Game::start() {
     view_field->display(*field);
     print_player_stats();
 
-    Observer obs;
+    Logger logger("../Logs/Logs.txt");
     char move_direction;
     unsigned move_number = 1;
     unsigned item_number = 0;
     unsigned enemy_number = 0;
 
+    if(Logger::is_outf()) {
+        Logger::message("Игра началась\n");
+    }
+    observer->add_observer(player);
     while (true){
-        Logger::message("Ход номер " + std::to_string(move_number) + ":\n");
+        Logger::message("Ход номер " + std::to_string(move_number) + ":\n\n");
 
         if(check_player_death()) break;
 
@@ -69,7 +70,7 @@ void Game::start() {
         player->make_move(*field, move_direction);
         if(player_on_exit()) break;
 
-
+        delete_dead_enemies();
         enemy_controller->make_action(enemies, *field);
         if(move_number % ITEM_FREQ_GENERATE == 0 && item_number < MAX_ITEM_NUMBER){
             auto* item = gen_field->add_rand_item(*field);
@@ -80,6 +81,9 @@ void Game::start() {
         if(move_number % ENEMY_FREQ_GENERATE == 0 && enemy_number < MAX_ENEMY_NUMBER){
             auto* enemy = gen_field->add_rand_enemy(*field);
             if(enemy) {
+                if(enemy->get_enemy_type() == TINY){
+                    observer->add_observer(enemy);
+                }
                 enemies.push_back(enemy);
                 ++enemy_number;
             }
@@ -88,6 +92,7 @@ void Game::start() {
         Clear_terminal::clear_screen();
         view_field->display(*field);
         print_player_stats();
+        observer->check_subscribers();
     }
     Clear_terminal::set_terminal_icanon();
     Logger::message("Игра окончена");
@@ -115,4 +120,18 @@ bool Game::player_on_exit() {
 
 void Game::print_player_stats() {
     std::cout<<*player<<' '<< player->get_health() << " hp " << player->get_damage() << " dmg\n";
+}
+
+void Game::delete_dead_enemies() {
+    int i = 0;
+    for(auto* enemy: enemies){
+        if(enemy->get_health() == 0){
+            observer->remove_dead_subs();
+            delete enemy;
+            enemies.erase(enemies.begin()+i);
+            continue;
+        }
+        i++;
+    }
+
 }

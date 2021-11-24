@@ -13,8 +13,7 @@
 void Enemy_controller::make_action(std::vector<Enemy*>& enemies, Field &field) {
     for (int i = 0; i < enemies.size(); ++i) {
         if (enemies[i]->get_health() == 0) {
-            delete enemies[i];
-            enemies.erase(enemies.begin() + i);
+
             continue;
         }
         Enemy &enemy = *(enemies[i]);

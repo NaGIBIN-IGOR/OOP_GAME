@@ -14,6 +14,7 @@ std::ofstream Logger::outf;
 bool Logger::console_out = false;
 bool Logger::file_out = false;
 
+
 Logger::Logger() {
     console_out = true;
 }
@@ -37,6 +38,7 @@ void Logger::add_console_out() {
 void Logger::message(const std::string& string) {
     if(console_out)std::cout<<string;
     if(file_out)outf << string;
+
 }
 
 
@@ -45,19 +47,24 @@ bool Logger::is_outf() {
 }
 
 void Logger::sub_changes_to_out(std::vector<std::pair<Subscriber *, Observe_inf>> &information) {
+    message("\n");
     for(auto elem: information){
         auto& sub = *elem.first;
         auto inf = elem.second;
         if(inf.health_change || inf.damage_change || inf.x_coordinate_change || inf.y_coordinate_change){
             std::stringstream ss;
-            ss<<sub;
+            ss<<'\t'<<sub<<":";
             if(inf.health_change) ss << " Здоровье изменено;";
             if(inf.damage_change) ss << " Урон изменён;";
-            if(inf.x_coordinate_change || inf.y_coordinate_change) ss << " Перешёл на другую клетку;";
-
-            ss<<"\n";
+            if(inf.x_coordinate_change || inf.y_coordinate_change) {
+                ss << " Перешёл на другую клетку;";
+                ss << "\n";
+                ss << "\t\t" << "Координаты: " << sub.get_x_coordinate() << ' ' << sub.get_y_coordinate() << std::endl;
+            }
+            if(!inf.y_coordinate_change && !inf.x_coordinate_change) ss <<'\n';
+            if(inf.health_change || inf.damage_change) ss<< '\t'<<'\t'<<sub.get_health() << " hp " << sub.get_damage() << " dmg\n";
+            ss<<'\n';
             message(ss.str());
         }
     }
-
 }

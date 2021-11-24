@@ -34,12 +34,10 @@ void Tiny_enemy::set_health(unsigned new_health) {
     else health = new_health;
 }
 
-void Tiny_enemy::print_enemy_inf(std::ostream &out) {
-//    out << "Тини имеет: " << this->get_health() << " здоровья  и " << this->get_damage() << " урона";
+void Tiny_enemy::print(std::ostream &out) {
     out<<*this;
 }
 std::ostream &operator<<(std::ostream &out,  Tiny_enemy &enemy) {
-//    out << "Тини имеет: " << enemy.get_health() << " здоровья  и " << enemy.get_damage() << " урона";
-    out << "Тини:";
+    out << "Тини";
     return out;
 }
