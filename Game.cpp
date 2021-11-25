@@ -15,11 +15,11 @@
 
 
 #define ITEM_FREQ_GENERATE 2
-#define ENEMY_FREQ_GENERATE 3
+#define ENEMY_FREQ_GENERATE 4
 #define MAX_ITEM_NUMBER 10
 #define MAX_ENEMY_NUMBER 6
 
-Game::Game():field(new Field(20, 7)), enemy_controller(new Enemy_controller()), view_field(new Field_view()), gen_field(new Field_generate()), player(new Player()), observer(new Observer()){
+Game::Game():field(new Field(20, 7)), enemy_controller(new Enemy_controller()), view_field(new Field_view()), gen_field(new Field_generate()), player(new Player()){
     std::srand(time(nullptr));
     gen_field->environment_generate(*field);
 }
@@ -30,7 +30,6 @@ Game::~Game() {
     delete view_field;
     delete gen_field;
     delete player;
-    delete observer;
     for (Enemy* enemy: enemies) {
         delete enemy;
     }
@@ -57,19 +56,20 @@ void Game::start() {
     if(Logger::is_outf()) {
         Logger::message("Игра началась\n");
     }
-    observer->add_observer(player);
+
+    logger.add_observed(player);
+
     while (true){
-        Logger::message("Ход номер " + std::to_string(move_number) + ":\n\n");
-
-        if(check_player_death()) break;
-
         Clear_terminal::clear_terminal_icanon();
+        Logger::message("Ход номер " + std::to_string(move_number) + ":\n");
 
         std::cin >> move_direction;
         if(move_direction == '1') break;
         player->make_move(*field, move_direction);
         if(player_on_exit()) break;
+        if(check_player_death()) break;
 
+        logger.check_dead_observed();
         delete_dead_enemies();
         enemy_controller->make_action(enemies, *field);
         if(move_number % ITEM_FREQ_GENERATE == 0 && item_number < MAX_ITEM_NUMBER){
@@ -82,7 +82,7 @@ void Game::start() {
             auto* enemy = gen_field->add_rand_enemy(*field);
             if(enemy) {
                 if(enemy->get_enemy_type() == TINY){
-                    observer->add_observer(enemy);
+                    logger.add_observed(enemy);
                 }
                 enemies.push_back(enemy);
                 ++enemy_number;
@@ -92,7 +92,7 @@ void Game::start() {
         Clear_terminal::clear_screen();
         view_field->display(*field);
         print_player_stats();
-        observer->check_subscribers();
+        logger.check_subs();
     }
     Clear_terminal::set_terminal_icanon();
     Logger::message("Игра окончена");
@@ -126,7 +126,6 @@ void Game::delete_dead_enemies() {
     int i = 0;
     for(auto* enemy: enemies){
         if(enemy->get_health() == 0){
-            observer->remove_dead_subs();
             delete enemy;
             enemies.erase(enemies.begin()+i);
             continue;

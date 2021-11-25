@@ -23,7 +23,6 @@ private:
     Enemy_controller* enemy_controller ;
     Player* player;
     std::vector<Enemy*> enemies;
-    Observer* observer;
 
     void end();
     bool check_player_death();

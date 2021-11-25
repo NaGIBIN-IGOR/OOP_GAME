@@ -19,4 +19,4 @@ private:
     unsigned damage_increase = 4;
 };
 
- //OOPGAME_DAMAGE_ITEM_H
+//OOPGAME_DAMAGE_ITEM_H

@@ -18,7 +18,7 @@ void Observer::check_subscribers() {
 
     int i = 0;
     for(auto& observed: observed_subs){
-        Observe_inf changed_inf = {false, false, false, false};
+        Observe_inf changed_inf;
         auto* sub = observed.first;
         auto inf = observed.second;
         bool sub_changed = false;

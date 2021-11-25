@@ -16,7 +16,6 @@
 
 class Logger {
 public:
-    Logger();
     explicit Logger(const std::string& filename);
     ~Logger();
 
@@ -24,7 +23,9 @@ public:
     static void message(const std::string& string);
     static void add_console_out();
     static void sub_changes_to_out(std::vector<std::pair<Subscriber*, Observe_inf>>& information);
-
+    void add_observed(Subscriber* subscriber);
+    void check_dead_observed();
+    void check_subs();
 
 private:
     Observer obs;

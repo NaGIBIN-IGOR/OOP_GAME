@@ -9,10 +9,10 @@
 #include "../On_cell_objects/Subscriber.h"
 
 struct Observe_inf{
-    bool health_change;
-    bool damage_change;
-    bool x_coordinate_change;
-    bool y_coordinate_change;
+    bool health_change = false;
+    bool damage_change = false;
+    bool x_coordinate_change = false;
+    bool y_coordinate_change = false;
 };
 
  //OOP_GAME_OBSERVE_INF_H
