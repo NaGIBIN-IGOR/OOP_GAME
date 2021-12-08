@@ -7,7 +7,6 @@
 #include <iostream>
 #include "Knight_enemy.h"
 #include "../../Cell/Cell.h"
-#include "../../Logs/Logger.h"
 
 unsigned Knight_enemy::get_health() {
     return health;

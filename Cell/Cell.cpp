@@ -109,7 +109,7 @@ void Cell::set_enemy(Enemy* en) {
     enemy = en;
 }
 void Cell::remove_enemy(){
-//    delete enemy;
+
     enemy = nullptr;
 }
 

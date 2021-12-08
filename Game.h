@@ -7,7 +7,7 @@
 
 
 #include "vector"
-#include "Logs/Observer.h"
+#include "Logs/Watcher.h"
 
 class Field; class Field_view; class Field_generate; class Enemy_controller; class Player; class Enemy;
 

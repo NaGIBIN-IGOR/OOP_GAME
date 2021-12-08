@@ -6,7 +6,6 @@
 #include "Enemies/Enemy.h"
 #include "Items/Item.h"
 #include "../Cell/Cell.h"
-#include "../Logs/Logger.h"
 
 #include <sstream>
 
@@ -61,7 +60,9 @@ void Player::move_up(Field &field) {
         Cell &cell = field.get_cell(x_player_coordinate, y_player_coordinate - 1);
         if(cell.enemy_on_cell()){
             make_hit(cell.get_enemy());
-            if(cell.get_enemy().get_health() == 0) cell.remove_enemy();
+            if(cell.get_enemy().get_health() == 0){
+                cell.remove_enemy();
+            }
         }
         else if (cell.is_passable() && cell.get_cell_type_inf() == PASSABLE_CELL) {
             field.get_cell(x_player_coordinate, y_player_coordinate).remove_player();
@@ -79,7 +80,9 @@ void Player::move_down(Field &field) {
         Cell &cell = field.get_cell(x_player_coordinate, y_player_coordinate +1);
         if(cell.enemy_on_cell()){
             make_hit(cell.get_enemy());
-            if(cell.get_enemy().get_health() == 0) cell.remove_enemy();
+            if(cell.get_enemy().get_health() == 0){
+                cell.remove_enemy();
+            }
         }
         else if (cell.is_passable() && cell.get_cell_type_inf() == PASSABLE_CELL) {
             field.get_cell(x_player_coordinate, y_player_coordinate).remove_player();
@@ -96,7 +99,9 @@ void Player::move_left(Field &field) {
     Cell &cell = field.get_cell(x_player_coordinate - 1, y_player_coordinate);
     if(cell.enemy_on_cell()){
         make_hit(cell.get_enemy());
-        if(cell.get_enemy().get_health() == 0) cell.remove_enemy();
+        if(cell.get_enemy().get_health() == 0) {
+            cell.remove_enemy();
+        }
     }
     else if (cell.is_passable() && cell.get_cell_type_inf() == PASSABLE_CELL) {
         field.get_cell(x_player_coordinate, y_player_coordinate).remove_player();
@@ -111,7 +116,9 @@ void Player::move_right(Field &field) {
     Cell &cell = field.get_cell(x_player_coordinate + 1, y_player_coordinate);
     if(cell.enemy_on_cell()){
         make_hit(cell.get_enemy());
-        if(cell.get_enemy().get_health() == 0) cell.remove_enemy();
+        if(cell.get_enemy().get_health() == 0) {
+            cell.remove_enemy();
+        }
     }
     else if (cell.is_passable() && (cell.get_cell_type_inf() == PASSABLE_CELL || cell.get_cell_type_inf() == EXIT)) {
         field.get_cell(x_player_coordinate, y_player_coordinate).remove_player();
@@ -127,7 +134,6 @@ void Player::make_hit(Enemy &enemy) {
 
     std::stringstream ss;
     ss << "\t" << "Игрок наносит " << this->damage << "ед.урона: " << enemy << std::endl;
-    Logger::message(ss.str());
     enemy.take_hit(get_damage());
 }
 

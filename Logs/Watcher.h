@@ -11,11 +11,11 @@
 
 //struct Observe_inf;class Subscriber; class Subscriber_inf;
 
-class Observer {
+class Watcher {
 public:
     void add_observer(Subscriber* new_sub);
     void remove_dead_subs();
-    void check_subscribers();
+    std::vector<std::pair<Subscriber *, Observe_inf*>>* check_subscribers();
 private:
     void set_actual_inf();
     std::vector<std::pair<Subscriber*, Subscriber_inf>> observed_subs;

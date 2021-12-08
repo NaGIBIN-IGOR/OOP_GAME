@@ -6,7 +6,6 @@
 #include "../../Cell/Cell.h"
 #include "../../Field/Field.h"
 #include "../Player.h"
-#include "../../Logs/Logger.h"
 #include <sstream>
 
 void Enemy::move_left(Field &field) {
@@ -91,7 +90,6 @@ void Enemy::make_move(Field &field, Diraction dir) {
 void Enemy::make_hit(Player& player) {
     std::stringstream ss;
     ss << "\t" <<*this << " наносит " << get_damage() << " ед.урона Игроку" << std::endl;
-    Logger::message(ss.str());
     if((int)player.get_health() - (int)get_damage() < 0) player.set_health(0);
     else player.set_health(player.get_health() - get_damage());
 }

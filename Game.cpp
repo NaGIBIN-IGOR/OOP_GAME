@@ -11,13 +11,12 @@
 #include "On_cell_objects/Enemies/Enemy_controller.h"
 #include "Cell/Cell.h"
 #include "Clear_terminal.h"
-#include "Logs/Logger.h"
-
+#include "Logs/Logger/Logger.h"
 
 #define ITEM_FREQ_GENERATE 2
 #define ENEMY_FREQ_GENERATE 4
 #define MAX_ITEM_NUMBER 10
-#define MAX_ENEMY_NUMBER 6
+#define MAX_ENEMY_NUMBER 1
 
 Game::Game():field(new Field(20, 7)), enemy_controller(new Enemy_controller()), view_field(new Field_view()), gen_field(new Field_generate()), player(new Player()){
     std::srand(time(nullptr));
@@ -47,31 +46,28 @@ void Game::start() {
     view_field->display(*field);
     print_player_stats();
 
-    Logger logger("../Logs/Logs.txt");
+    Logger logger;
+    logger.add_file("../Logs/Logs.txt");
+    logger.add_logger_object(player);
+
     char move_direction;
     unsigned move_number = 1;
     unsigned item_number = 0;
     unsigned enemy_number = 0;
 
-    if(Logger::is_outf()) {
-        Logger::message("Игра началась\n");
-    }
 
-    logger.add_observed(player);
-
+    logger.message("Игра началась\n");
     while (true){
+        logger.message("Ход номер " + std::to_string(move_number) + ":\n");
         Clear_terminal::clear_terminal_icanon();
-        Logger::message("Ход номер " + std::to_string(move_number) + ":\n");
 
         std::cin >> move_direction;
         if(move_direction == '1') break;
         player->make_move(*field, move_direction);
         if(player_on_exit()) break;
-        if(check_player_death()) break;
 
-        logger.check_dead_observed();
-        delete_dead_enemies();
         enemy_controller->make_action(enemies, *field);
+        if(check_player_death()) break;
         if(move_number % ITEM_FREQ_GENERATE == 0 && item_number < MAX_ITEM_NUMBER){
             auto* item = gen_field->add_rand_item(*field);
             if(item){
@@ -82,7 +78,7 @@ void Game::start() {
             auto* enemy = gen_field->add_rand_enemy(*field);
             if(enemy) {
                 if(enemy->get_enemy_type() == TINY){
-                    logger.add_observed(enemy);
+                    logger.add_logger_object(enemy);
                 }
                 enemies.push_back(enemy);
                 ++enemy_number;
@@ -92,10 +88,14 @@ void Game::start() {
         Clear_terminal::clear_screen();
         view_field->display(*field);
         print_player_stats();
-        logger.check_subs();
+
+        logger.write_change_objects();
+
+        logger.remove_dead_logger_objects();
+        delete_dead_enemies();
     }
     Clear_terminal::set_terminal_icanon();
-    Logger::message("Игра окончена");
+    logger.message("Конец игры");
 }
 void Game::end() {
     std::cout<<"\t\tTHE END\t\t\n";
