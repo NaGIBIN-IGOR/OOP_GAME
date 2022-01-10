@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "../../Type_item.h"
+#include "../../Enums/Type_item.h"
 
 class Cell;
 class Field;

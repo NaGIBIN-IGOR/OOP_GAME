@@ -12,7 +12,8 @@ void Field_view::display(const Field &field) {
     for (unsigned int y = 0; y < field.get_height(); y++) {
         for (unsigned int x = 0; x < field.get_wide(); x++) {
             Cell_view view_cell(field.get_cell(x, y));
-            std::cout << view_cell.get_cell_sign();
+            printf("%c", view_cell.get_cell_sign());
+            //            std::cout << view_cell.get_cell_sign();
         }
         std::cout << '\n';
     }

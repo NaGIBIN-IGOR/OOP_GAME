@@ -5,9 +5,9 @@
 #pragma once
 
 #include "../View/Cell_view.h"
-#include "../Type_cell.h"
-#include "../Type_item.h"
-#include "../Type_enemy.h"
+#include "../Enums/Type_cell.h"
+#include "../Enums/Type_item.h"
+#include "../Enums/Type_enemy.h"
 
 class Item;
 class Enemy;
@@ -23,9 +23,9 @@ public:
 
     Cell(const Cell &reference_cell);
 
-    bool player_on_cell();
-
     bool is_passable() const;
+
+    bool player_on_cell();
 
     bool enemy_on_cell();
 
@@ -40,6 +40,8 @@ public:
     Player& get_player();
 
     Enemy& get_enemy();
+
+    Item& get_item();
 
     void set_passable(bool pass);
 
@@ -58,8 +60,6 @@ public:
     void remove_item();
 
     //void pick_up_item(Player& player);
-
-    Item& get_item();
 
 private:
     bool passable;

@@ -12,6 +12,7 @@ class Cell;
 class Knight_enemy : public Enemy{
 public:
     Knight_enemy(unsigned x_coord, unsigned y_coord);
+    Knight_enemy(unsigned x_coord, unsigned y_coord, unsigned health, unsigned damage);
     friend std::ostream& operator<< (std::ostream &out, Knight_enemy& enemy);
 
     unsigned get_health() override;

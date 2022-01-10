@@ -7,8 +7,8 @@
 
 
 #include <string>
-#include "./../../Type_enemy.h"
-#include "./../../Diraction.h"
+#include "../../Enums/Type_enemy.h"
+#include "../../Enums/Diraction.h"
 #include "../Subscriber.h"
 
 class Field;

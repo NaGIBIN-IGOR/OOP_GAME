@@ -11,6 +11,7 @@
 class Tiny_enemy: public Enemy{
 public:
     Tiny_enemy(unsigned x_coord, unsigned y_coord);
+    Tiny_enemy(unsigned x_coord, unsigned y_coord, unsigned health, unsigned damage);
     friend std::ostream& operator<< (std::ostream &out, Tiny_enemy& enemy);
 
     unsigned get_health() override;

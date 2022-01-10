@@ -8,7 +8,7 @@
 
 #include <vector>
 #include "Enemy.h"
-#include "../../Diraction.h"
+#include "../../Enums/Diraction.h"
 
 class Field;
 class Enemy_controller{

@@ -21,18 +21,25 @@ Field::Field(unsigned int wide, unsigned int height) : wide(wide), height(height
     }
 }
 
-Field::Field(const Field &reference_field) : wide(reference_field.wide), height(reference_field.height) {
+Field::Field(const Field &reference_field) :
+    wide(reference_field.wide),
+    height(reference_field.height),
+    environment_exist(reference_field.environment_exist),
+    entrance_coord(reference_field.entrance_coord),
+    exit_coord(reference_field.exit_coord)
 
-    this->cells = new Cell *[height];
+    {
+    this->cells = new Cell* [height];
     for (size_t i = 0; i < height; i++) {
+        cells[i] = new Cell[wide];
         for (size_t j = 0; j < wide; j++) {
-            this->cells[i][j] = reference_field.cells[i][j]; /////////////////////tmp
+            this->cells[i][j] = reference_field.cells[i][j];
         }
     }
 }
 
 Field::Field(Field &&reference_field) : wide(reference_field.wide), height(reference_field.height) {
-    this->cells = reference_field.cells;
+
     reference_field.cells = nullptr;
     reference_field.height = -1;
     reference_field.wide = -1;
@@ -134,11 +141,11 @@ void Field::set_y_exit_coordinate(unsigned int y) {
     exit_coord = y;
 }
 
-unsigned Field::get_entrance_coordinate() {
+unsigned Field::get_entrance_coordinate()const {
     return entrance_coord;
 }
 
-unsigned Field::get_exit_coordinate() {
+unsigned Field::get_exit_coordinate() const{
     return exit_coord;
 }
 
@@ -146,6 +153,27 @@ void Field::environment_exist_set() {
     environment_exist = true;
 }
 
-bool Field::is_environment_exist() {
+bool Field::is_environment_exist() const {
     return environment_exist;
 }
+
+void Field::set_height(unsigned int height) {
+    this->height = height;
+    if(wide != -1){
+        cells = new Cell *[height];
+        for (size_t i = 0; i < this->height; i++) {
+            cells[i] = new Cell[wide];
+        }
+    }
+}
+
+void Field::set_wide(unsigned int wide) {
+    this->wide = wide;
+    if(height != -1){
+        cells = new Cell *[height];
+        for (size_t i = 0; i < this->height; i++) {
+            cells[i] = new Cell[wide];
+        }
+    }
+}
+

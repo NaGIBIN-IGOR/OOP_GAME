@@ -6,6 +6,7 @@
 #include "Enemies/Enemy.h"
 #include "Items/Item.h"
 #include "../Cell/Cell.h"
+#include "../Enums/Command.h"
 
 #include <sstream>
 
@@ -70,6 +71,7 @@ void Player::move_up(Field &field) {
             y_player_coordinate -= 1;
             if(cell.get_item_type_inf() != NO_ITEM){
                 cell.get_item().pick_up_item(*this, cell);
+                ++picked_up_items;
             }
         }
     }
@@ -90,6 +92,8 @@ void Player::move_down(Field &field) {
             y_player_coordinate += 1;
             if(cell.get_item_type_inf() != NO_ITEM){
                 cell.get_item().pick_up_item(*this, cell);
+                ++picked_up_items;
+
             }
         }
     }
@@ -109,6 +113,8 @@ void Player::move_left(Field &field) {
         x_player_coordinate -= 1;
         if(cell.get_item_type_inf() != NO_ITEM){
             cell.get_item().pick_up_item(*this, cell);
+            ++picked_up_items;
+
         }
     }
 }
@@ -126,6 +132,8 @@ void Player::move_right(Field &field) {
         x_player_coordinate += 1;
         if(cell.get_item_type_inf() != NO_ITEM){
             cell.get_item().pick_up_item(*this, cell);
+            ++picked_up_items;
+
         }
     }
 }
@@ -136,9 +144,27 @@ void Player::make_hit(Enemy &enemy) {
     ss << "\t" << "Игрок наносит " << this->damage << "ед.урона: " << enemy << std::endl;
     enemy.take_hit(get_damage());
 }
+void Player::make_move(Field& field, Command c) {
+    switch (c) {
+        case MOVE_UP:
+            move_up(field);
+            return;
+        case MOVE_LEFT:
+            move_left(field);
+            return;
+        case MOVE_DOWN:
+            move_down(field);
+            return;
+        case MOVE_RIGHT:
+            move_right(field);
+            return;
+        default:
+            return;
+    }
 
-void Player::make_move(Field& field, char wasdg) {
-    switch (wasdg) {
+}
+void Player::make_move(Field& field, char wasd) {
+    switch (wasd) {
         case 'w':
             move_up(field);
             return;
@@ -150,12 +176,6 @@ void Player::make_move(Field& field, char wasdg) {
             return;
         case 'd':
             move_right(field);
-            return;
-        case 'g':
-            this->set_health(9999999);
-            this->set_damage(200);
-            this->set_max_damage(99999);
-            this->set_max_health(9999999);
             return;
     }
 
@@ -185,6 +205,16 @@ unsigned Player::get_damage() const {
 void Player::print(std::ostream &out){
     out << *this;
 }
+
+unsigned Player::get_items_pick_up_number() {
+    return picked_up_items;
+}
+
+void Player::set_items_picked_up_number(unsigned int num) {
+    picked_up_items = num;
+}
+
+
 
 
 

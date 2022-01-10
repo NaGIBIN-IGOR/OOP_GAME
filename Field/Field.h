@@ -11,6 +11,8 @@
 class Cell;
 class Field {
 public:
+    Field()=default;
+
     Field(unsigned int wide, unsigned int height);
 
     ~Field();
@@ -37,18 +39,22 @@ public:
 
     void set_y_exit_coordinate(unsigned);
 
-    unsigned get_entrance_coordinate();
+    unsigned get_entrance_coordinate() const;
 
-    unsigned get_exit_coordinate();
+    unsigned get_exit_coordinate() const;
 
     void environment_exist_set();
 
-    bool is_environment_exist();
-private:
-    Cell **cells;
-    unsigned int wide;
-    unsigned int height;
+    bool is_environment_exist() const;
 
+    void set_wide(unsigned  wide);
+
+    void set_height(unsigned height);
+
+private:
+    Cell **cells = nullptr;
+    unsigned int wide = -1;
+    unsigned int height = -1;
     bool environment_exist = false;
     unsigned entrance_coord = -1;
     unsigned exit_coord = -1;

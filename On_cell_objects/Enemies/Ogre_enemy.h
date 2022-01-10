@@ -12,6 +12,7 @@ class Ogre_enemy : public Enemy{
 public:
 
     Ogre_enemy(unsigned x_coord, unsigned y_coord);
+    Ogre_enemy(unsigned x_coord, unsigned y_coord, unsigned health, unsigned damage);
     friend std::ostream& operator<< (std::ostream &out, Ogre_enemy& enemy);
 
     unsigned get_health() override;

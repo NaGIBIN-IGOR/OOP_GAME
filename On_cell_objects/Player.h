@@ -6,8 +6,9 @@
 
 
 #include "fstream"
-#include "./../Diraction.h"
+#include "../Enums/Diraction.h"
 #include "Subscriber.h"
+#include "../Enums/Command.h"
 
 class Field;
 class Enemy;
@@ -60,9 +61,15 @@ public:
 
     void move_down(Field &field);
 
-    void make_move(Field& field, char wasdg);
+    void make_move(Field& field, char wasd);
+
+    void make_move(Field& field, Command dir);
 
     void print(std::ostream &out) override;
+
+    unsigned get_items_pick_up_number();
+
+    void set_items_picked_up_number(unsigned  num);
 protected:
 
 private:
@@ -72,6 +79,7 @@ private:
     unsigned max_damage = 14;
     unsigned x_player_coordinate = -1;
     unsigned y_player_coordinate = -1;
+    unsigned picked_up_items;
 
 };
 

@@ -1,11 +1,20 @@
 #include <iostream>
 
-#include "Game.h"
-#include "Logs/Watcher.h"
-#include "Logs/Logger/Console_logger.h"
+#include "Game/Game.h"
+#include "Game/Game.cpp"
+#include "Conditions/Lose_condition.h"
+#include "Conditions/Win_condition_exit.h"
+#include "Conditions/Win_condition_items.h"
+#include "Save_load/Game_loader.h"
+#include "Game/Message_to_user.h"
+
 int main() {
-    Game game;
-    game.start();
-    Console_logger c;
-    c.add_file("file.txt");
+    const unsigned difficulty = 1;
+    Game<Win_condition_exit<difficulty>, Lose_condition<difficulty>> game(difficulty);
+    Game_save* save = game.prepare_start();
+    if(save) {
+        Game_loader loader(save);
+        loader.start_load_game();
+    }
+    return 0;
 }

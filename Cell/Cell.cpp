@@ -15,6 +15,7 @@ Cell::Cell(bool passible, Type_cell type) : passable(passable), cell_type_inf(ty
 
 Cell::Cell(const Cell &reference_cell) : passable(reference_cell.passable),
                                          cell_type_inf(reference_cell.cell_type_inf) {
+
 }
 
 Cell::~Cell() {

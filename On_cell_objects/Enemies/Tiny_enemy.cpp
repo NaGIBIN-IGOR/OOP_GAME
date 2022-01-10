@@ -41,3 +41,10 @@ std::ostream &operator<<(std::ostream &out,  Tiny_enemy &enemy) {
     out << "Тини";
     return out;
 }
+
+Tiny_enemy::Tiny_enemy(unsigned int x_coord, unsigned int y_coord, unsigned int health, unsigned int damage) :
+        health(health),damage(damage){
+    x = x_coord;
+    y = y_coord;
+
+}

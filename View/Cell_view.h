@@ -5,7 +5,7 @@
 #ifndef OOPGAME_CELL_VIEW_H
 #define OOPGAME_CELL_VIEW_H
 
-#include "../Type_cell.h"
+#include "../Enums/Type_cell.h"
 
 class Cell;
 

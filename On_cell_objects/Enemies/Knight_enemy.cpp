@@ -46,3 +46,9 @@ std::ostream &operator<<(std::ostream &out,  Knight_enemy &enemy) {
     out << "Рыцарь";
     return out;
 }
+
+Knight_enemy::Knight_enemy(unsigned int x_coord, unsigned int y_coord, unsigned int health, unsigned int damage) :
+                           health(health),damage(damage){
+    x = x_coord;
+    y = y_coord;
+}
